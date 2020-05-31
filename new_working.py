@@ -14,7 +14,7 @@ data = pd.read_csv(data_root_folder+'data_source.csv', encoding="cp1252")
 
 LOC = list(data['LOCATION'])
 #barrrr.getBars(LOC[0]).show()
-ff = list(data['AVGFOOTFALL'])
+ff =  list(data['AVGFOOTFALL'])
 LAT = list(data['LAT'])
 LON = list(data['LON'])
 website = list(data['website'])
