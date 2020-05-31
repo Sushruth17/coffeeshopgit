@@ -5,8 +5,8 @@ def getData(beverage,area):
     # Connect to the database
     connection = pymysql.connect(host='localhost',
                                  user='root',
-                                 password='123123',
-                                 db='test4545',
+                                 password='',
+                                 db='test',
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     try:
