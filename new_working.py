@@ -6,6 +6,7 @@ import base64
 import os
 import days as d
 import gbartest1 as barrrr
+import AreaNameMappingDict as ad
 
 img_root_folder = 'res\\img\\'
 data_root_folder = 'res\\data\\'
@@ -36,7 +37,7 @@ cluster = folium.plugins.MarkerCluster().add_to(m)
 for f, lc, lt, ln, w, mon, tue, wed, thu, fri, sat, sun in zip(ff, LOC, LAT, LON, website, d.MON, d.TUE, d.WED, d.THU, d.FRI,d. SAT,d.SUN):
 
     psale = pd.read_csv(data_root_folder+'shop_menu.csv')
-    prd = psale.to_html(classes='table table-striped table-hover table-condensed table-responsive')
+    #prd = psale.to_html(classes='table table-striped table-hover table-condensed table-responsive')
     html="<img src='data:image/png;base64,{}'></b>".format
 #    x = ['MON', 'TUE', 'WED', 'THU','FRI', 'SAT', 'SUN']
  #   y = [mon, tue, wed, thu, fri, sat, sun]
@@ -59,7 +60,11 @@ for f, lc, lt, ln, w, mon, tue, wed, thu, fri, sat, sun in zip(ff, LOC, LAT, LON
     Filename = dir_base + '\\' + file1
     encoded = base64.b64encode(open(Filename, 'rb').read())
     html = html(encoded.decode('UTF-8'))
-    html__ = "<b> Coffee Thago:&nbsp;</b>" + lc + "<br><br><b>Products:</b>" + prd
+    #if lc == "Vjnagar":
+    lcMapped = ad.area.get(lc)
+    if lcMapped == None:
+        lcMapped = lc
+    html__ = "<b> Coffee Thago:&nbsp;</b>" + lcMapped + "<br><br><b>Analysis:</b>"
     html__ = html__+html
     iframe = branca.element.IFrame(html=html__, width=500, height=400)
     popup  = folium.Popup(iframe, max_width=2650)

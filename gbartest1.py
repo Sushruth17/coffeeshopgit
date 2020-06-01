@@ -22,7 +22,7 @@ def getBars(area):
     r1 = np.arange((len(coffeeBar)))
     r2 = [x + barWidth for x in r1]
     r3 = [x + barWidth for x in r2]
-
+    plt.figure(num=None, figsize=(5.5, 3.5), dpi=80, facecolor='w', edgecolor='k')
     # Make the plot
     if len(coffeeBar) > 0:
         maxWindowSize = max(maxWindowSize,max(coffeeBar))
