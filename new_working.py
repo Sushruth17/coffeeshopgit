@@ -35,46 +35,71 @@ cluster = folium.plugins.MarkerCluster().add_to(m)
   #  encoded = base64.b64encode(open(Filename1, 'rb').read())
   #  html = html(encoded.decode('UTF-8'))
 
-def footfall():
+def footfall(lc):
         html = "<img src='data:image/png;base64,{}'></b>".format
         x = ['MON', 'TUE', 'WED', 'THU','FRI', 'SAT', 'SUN']
         y = [mon, tue, wed, thu, fri, sat, sun]
         plt.figure(num=None, figsize=(5.5, 3.5), dpi=80, facecolor='w', edgecolor='k')
-        plt.xlabel('DAYS--->')
-        plt.ylabel('SALES--->')
-        plt.title('Analysis:')
+        plt.xlabel('DAYS -->',fontweight='bold')
+        plt.ylabel('FOOTFALL -->',fontweight='bold')
+        plt.title('Footfall:',fontweight='bold')
         plt.bar(x, y)
-        file = img_root_folder + lc + img_default_name_footfall
-        plt.savefig(file)
+        absolutePathFootFall = img_root_folder + lc + img_default_name_footfall
+        plt.savefig(absolutePathFootFall)
         plt.close()
         dir_base = os.getcwd()
-        Filename = dir_base + '\\' + file
-        encoded = base64.b64encode(open(Filename, 'rb').read())
-        html = html(encoded.decode('UTF-8'))
+        Filename = dir_base + '\\' + absolutePathFootFall
+        try:
+            encoded = base64.b64encode(open(Filename, 'rb').read())
+            html = html(encoded.decode('UTF-8'))
+        except:
+            lcMapped = ad.area.get(lc)
+            if lcMapped == None:
+                lcMapped = lc
+            html = "<!DOCTYPE html><html><head><title></title> \
+                    </head><body>No {} data for {} </body></html>".format('footfall',lcMapped)
+            print("Exception while opening file for FootFall")
+
         return html
 
-def salesBarPlotter():
+def salesBarPlotter(lc):
     #psale = pd.read_csv(data_root_folder+'shop_menu.csv')
     #prd = psale.to_html(classes='table table-striped table-hover table-condensed table-responsive')
-    htmlFootfall=footfall()
-    html="<img src='data:image/png;base64,{}'></b>".format
+    htmlFootfall=footfall(lc)
+    htmlSales="<img src='data:image/png;base64,{}'></b></br></br></br>".format
 
-    file1 = img_root_folder + lc + img_default_name_footfall
+    absolutePathSales = img_root_folder + lc + img_default_name_sales
+
     bar = barrrr.getBars(lc)
-    bar.savefig(file1)
-    bar.close()
+    if bar != None:
+        bar.savefig(absolutePathSales)
+        bar.close()
     dir_base = os.getcwd()
-    Filename1 = dir_base + '\\' + file1
-    encoded = base64.b64encode(open(Filename1, 'rb').read())
-    html = html(encoded.decode('UTF-8'))
+    Filename1 = dir_base + '\\' + absolutePathSales
+    try:
+        encoded = base64.b64encode(open(Filename1, 'rb').read())
+        htmlSales = htmlSales(encoded.decode('UTF-8'))
+    except:
+        lcMapped = ad.area.get(lc)
+        if lcMapped == None:
+            lcMapped = lc
+        htmlSales = "<!DOCTYPE html><html><head><title></title> \
+                    </head><body>No {} data for {} </body></html>".format('sales',lcMapped)
+        print("Exception while opening file for Sales")
     lcMapped = ad.area.get(lc)
     if lcMapped == None:
         lcMapped = lc
 
-    html__ = "<b> Coffee Thago:&nbsp;</b>" + lcMapped + "<br><br><b>Analysis:</b>"
-    html__ += html
-    html__ += htmlFootfall
-    iframe = branca.element.IFrame(html=html__, width=500, height=400)
+    mainHTML = "<b> Coffee Thago:&nbsp;</b>" + lcMapped + "<br><br><b>Analysis:</b>"
+    print("Im htmlsale - > " ,htmlSales)
+    if htmlSales!= None:
+        mainHTML += htmlSales
+        print("Im htmlFootfall - > ", htmlFootfall)
+    if htmlFootfall!= None:
+        mainHTML += htmlFootfall
+    print("html --- >>>",htmlSales)
+    iframe = branca.element.IFrame(html=mainHTML, width=500, height=400)
+    mainHTML = None
     popup  = folium.Popup(iframe, max_width=2650)
     if f < min:
         folium.Marker(location=[lt, ln], popup=popup,
@@ -92,7 +117,7 @@ def salesBarPlotter():
 for f, lc, lt, ln, w, mon, tue, wed, thu, fri, sat, \
         sun in zip(ff, LOC, LAT, LON, website, d.MON, d.TUE, d.WED, d.THU, d.FRI, d.SAT, d.SUN):
 
-        salesBarPlotter()
+        salesBarPlotter(lc)
 
 
 m = folium.Map(location=[20.6112706, 77.7679723], zoom_start=5)
