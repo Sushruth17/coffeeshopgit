@@ -41,7 +41,8 @@ def getBars(area):
         print("No values for Cake in area ",area)
 
     # Add xticks on the middle of the group bars
-    plt.ylim(0, maxWindowSize+(30*maxWindowSize/100))
+    if maxWindowSize > 0:
+        plt.ylim(0, maxWindowSize+(30*maxWindowSize/100))
     plt.xlabel('Days', fontweight='bold')
     plt.ylabel('Sales', fontweight='bold')
     plt.xticks([r + barWidth for r in range(len(coffeeBar))], ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'])
