@@ -14,7 +14,7 @@ img_default_name_footfall = '_img.png'
 img_default_name_sales = '_gplot.png'
 data = pd.read_csv(data_root_folder+'data_source.csv', encoding="cp1252")
 locDictKey = ad.area.keys()
-print("value---->",locDictKey)
+#print("value---->",locDictKey)
 
 LAT = []
 LON = []
@@ -138,6 +138,11 @@ for f, lc, lt, ln, mon, tue, wed, thu, fri, sat, \
 
 
 m = folium.Map(location=[20.6112706, 77.7679723], zoom_start=5)
-
+title_html = '''
+     <head><style> html { overflow-y: hidden; } </style></head>
+     <h3 align="center" style="font-size:20px"><b>Data Analysis of Coffee shop</b></h3>
+     '''
 m.add_to(cluster)
+
+m.get_root().html.add_child(folium.Element(title_html))
 m.save("Nmap.html")

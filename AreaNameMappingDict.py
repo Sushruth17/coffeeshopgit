@@ -1,4 +1,3 @@
-
 area = {
     'Vjnagar' : 'Vijayanagar',
     'MGRoad' : 'MG Road',

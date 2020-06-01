@@ -1,7 +1,7 @@
-import csv
-with open('C:\\Users\\admin\\PycharmProjects\\gm\\res\\data\\sales.csv') as fd:
-    reader=csv.reader(fd)
-    r=[row for idx, row in enumerate(reader) if idx in (1,2,3)]
+# import csv
+# with open('C:\\Users\\admin\\PycharmProjects\\gm\\res\\data\\sales.csv') as fd:
+#     reader=csv.reader(fd)
+#     r=[row for idx, row in enumerate(reader) if idx in (1,2,3)]
 import numpy as np
 import matplotlib.pyplot as plt
 import sqltestdb as sdb
@@ -11,12 +11,10 @@ def getBars(area):
     coffeeBar = sdb.getData('Coffee', area)
     milkshakeBar = sdb.getData('Milkshake',area )
     cakeBar = sdb.getData('Cake', area)
-    #bars1 = list(map(int,r[0][1:8]))
-    #bars2 = list(map(int,r[1][1:8]))
-    #bars3 = list(map(int,r[2][1:8]))
-    print("bar1--> ", coffeeBar)
-    print(milkshakeBar)
-    print(cakeBar)
+
+    # print("bar1--> ", coffeeBar)
+    # print(milkshakeBar)
+    # print(cakeBar)
     if coffeeBar and milkshakeBar and cakeBar != None:
         barWidth = 0.25
 

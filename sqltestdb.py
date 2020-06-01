@@ -18,7 +18,7 @@ def getData(beverage,area):
             cursor.execute(sql)
 
             records = cursor.fetchone()
-            print("record >> ", records)
+            #print("record >> ", records)
 
             if records != None:
                 listu= [records['Mon'],records['Tue'],records['Wed'],records['Thu'],records['Fri'],
@@ -45,21 +45,11 @@ def getLocationDetails(area):
             sql = "SELECT City,LAT,LON,AVGFOOTFALL,MON,TUE,WED,THU,FRI," \
                   "SAT,SUN FROM `sourcedata` WHERE" \
                   " LOCATION = '{}'".format(area)
-            # {'id': 1, 'City': 'Bangalore', 'LOCATION': 'Vjnagar', 'LAT': 12.9714, 'LON': 77.5436, 'AVGFOOTFALL': 166.0,
-            #  'MON': 122, 'TUE': 148, 'WED': 135, 'THU': 166, 'FRI': 174, 'SAT': 220, 'SUN': 197}
-            testSQL="SELECT * FROM `sourcedata` WHERE LOCATION =  'Vjnagar' "
+
             cursor.execute(sql)
-
             records = cursor.fetchone()
-            print("record >> ", records)
 
-            if records != None:
-                lista = [records['City'],records['LAT'], records['LON'],records['AVGFOOTFALL'],
-                         records['MON'],records['TUE'],records['WED'],records['THU'],
-                         records['FRI'],records['SAT'],records['SUN']]
-            else:
-                lista = []
-
+            #print("record >> ", records)
             return records
     finally:
         connection.close()
