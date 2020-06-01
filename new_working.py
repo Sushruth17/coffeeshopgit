@@ -76,7 +76,7 @@ def footfall(lc):
         if lcMapped == None:
             lcMapped = lc
         html = "<!DOCTYPE html><html><head><title></title> \
-                </head><body><p style=font-family:calibri>No {} data for {} </p></body></html>".format('footfall',lcMapped)
+                </head><body><font face = calibri color = red>No {} data for {} </font></body></html>".format('footfall',lcMapped)
         print("Exception while opening file for FootFall")
 
     return html
@@ -101,7 +101,7 @@ def salesBarPlotter(lc):
         if lcMapped == None:
             lcMapped = lc
         htmlSales = "<!DOCTYPE html><html><head><title></title> \
-                    </head><body><p style=font-family:calibri>No {} data for {} </p></body></html>".format('sales',lcMapped)
+                    </head><body><font face = calibri color = red>No {} data for {} </font></body></html>".format('sales',lcMapped)
         print("Exception while opening file for Sales")
     lcMapped = ad.area.get(lc)
     if lcMapped == None:
