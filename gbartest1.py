@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import sqltestdb as sdb
 
 def getBars(area):
+    maxWindowSize=0
     coffeeBar = sdb.getData('Coffee', area)
     milkshakeBar = sdb.getData('Milkshake',area )
     cakeBar = sdb.getData('Cake', area)
@@ -24,18 +25,23 @@ def getBars(area):
 
     # Make the plot
     if len(coffeeBar) > 0:
+        maxWindowSize = max(maxWindowSize,max(coffeeBar))
         plt.bar(r1, coffeeBar, width=barWidth, edgecolor='white', label='Coffee')
     else:
         print("No values for Coffee in area ",area)
     if  len(milkshakeBar) > 0:
+        maxWindowSize = max(maxWindowSize,max(milkshakeBar))
         plt.bar(r2, milkshakeBar, width=barWidth, edgecolor='white', label='Milkshake')
     else:
         print("No values for Milkshake in area ",area)
     if  len(cakeBar) > 0:
+        maxWindowSize = max(maxWindowSize,max(cakeBar))
         plt.bar(r3, cakeBar, width=barWidth, edgecolor='white', label='Cake')
     else:
         print("No values for Cake in area ",area)
+
     # Add xticks on the middle of the group bars
+    plt.ylim(0, maxWindowSize+(30*maxWindowSize/100))
     plt.xlabel('Days', fontweight='bold')
     plt.ylabel('Sales', fontweight='bold')
     plt.xticks([r + barWidth for r in range(len(coffeeBar))], ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'])
