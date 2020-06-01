@@ -45,8 +45,8 @@ def getBars(area):
         # Add xticks on the middle of the group bars
         if maxWindowSize > 0:
             plt.ylim(0, maxWindowSize+(30*maxWindowSize/100))
-        plt.xlabel('DAYS -->', fontweight='bold')
-        plt.ylabel('SALES -->', fontweight='bold')
+        plt.xlabel('DAYS -->')
+        plt.ylabel('SALES -->')
         plt.xticks([r + barWidth for r in range(len(coffeeBar))], ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'])
         # Create legend & Show graphic
         plt.legend()
