@@ -18,14 +18,23 @@ def getBars(area):
     print(cakeBar)
     barWidth = 0.25
 
-    r1 = np.arange(len(coffeeBar))
+    r1 = np.arange((len(coffeeBar)))
     r2 = [x + barWidth for x in r1]
     r3 = [x + barWidth for x in r2]
 
     # Make the plot
-    plt.bar(r1, coffeeBar, width=barWidth, edgecolor='white', label='Coffee')
-    plt.bar(r2, milkshakeBar, width=barWidth, edgecolor='white', label='Milkshake')
-    plt.bar(r3, cakeBar, width=barWidth, edgecolor='white', label='Cake')
+    if len(coffeeBar) > 0:
+        plt.bar(r1, coffeeBar, width=barWidth, edgecolor='white', label='Coffee')
+    else:
+        print("No values for Coffee in area ",area)
+    if  len(milkshakeBar) > 0:
+        plt.bar(r2, milkshakeBar, width=barWidth, edgecolor='white', label='Milkshake')
+    else:
+        print("No values for Milkshake in area ",area)
+    if  len(cakeBar) > 0:
+        plt.bar(r3, cakeBar, width=barWidth, edgecolor='white', label='Cake')
+    else:
+        print("No values for Cake in area ",area)
     # Add xticks on the middle of the group bars
     plt.xlabel('Days', fontweight='bold')
     plt.ylabel('Sales', fontweight='bold')
