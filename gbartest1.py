@@ -1,10 +1,7 @@
-# import csv
-# with open('C:\\Users\\admin\\PycharmProjects\\gm\\res\\data\\sales.csv') as fd:
-#     reader=csv.reader(fd)
-#     r=[row for idx, row in enumerate(reader) if idx in (1,2,3)]
 import numpy as np
 import matplotlib.pyplot as plt
 import sqltestdb as sdb
+
 
 def getBars(area):
     maxWindowSize=0

@@ -1,7 +1,8 @@
 import pymysql.cursors
 
+
 def getData(beverage,area):
-    print("get data for --->",beverage," ",area)
+    #print("get data for --->",beverage," ",area)
     connection = pymysql.connect(host='localhost',
                                  user='root',
                                  password='',
@@ -32,7 +33,7 @@ def getData(beverage,area):
 
 
 def getLocationDetails(area):
-    print("get loc details for --->", area)
+    #print("get loc details for --->", area)
     connection = pymysql.connect(host='localhost',
                                  user='root',
                                  password='',

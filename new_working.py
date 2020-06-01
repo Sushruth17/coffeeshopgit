@@ -14,8 +14,6 @@ img_default_name_footfall = '_img.png'
 img_default_name_sales = '_gplot.png'
 data = pd.read_csv(data_root_folder+'data_source.csv', encoding="cp1252")
 locDictKey = ad.area.keys()
-#print("value---->",locDictKey)
-
 LAT = []
 LON = []
 ff = []
@@ -38,23 +36,15 @@ for area in locDictKey:
     FRI.append(locDetails.get('FRI'))
     SAT.append(locDetails.get('SAT'))
     SUN.append(locDetails.get('SUN'))
-
-#print("LAT DETAILS ____________>",LAT)
-#print("LON DETAILS ____________>",LON)
 LOC = list(locDictKey)
-#print("listLOC-------------------------------------------->",LOC)
-#barrrr.getBars(LOC[0]).show()
-#ff =  list(data['AVGFOOTFALL'])
-#LAT = list(data['LAT'])
-#LON = list(data['LON'])
-#website = list(data['website'])
-#fg = folium.FeatureGroup('my map')
 min = 200
 max = 300
 m = folium.Map(location=[20.6112706, 77.7679723], zoom_start=5)
 cluster = folium.plugins.MarkerCluster().add_to(m)
 
+
 def footfall(lc):
+
     html = "<img src='data:image/png;base64,{}'></b>".format
     x = ['MON', 'TUE', 'WED', 'THU','FRI', 'SAT', 'SUN']
     y = [mon, tue, wed, thu, fri, sat, sun]
@@ -76,10 +66,12 @@ def footfall(lc):
         if lcMapped == None:
             lcMapped = lc
         html = "<!DOCTYPE html><html><head><title></title> \
-                </head><body><font face = calibri color = red>No {} data for {} </font></body></html>".format('footfall',lcMapped)
+                </head><body><font face = calibri color = red>No {} data for {}" \
+               " </font></body></html>".format('footfall',lcMapped)
         print("Exception while opening file for FootFall")
 
     return html
+
 
 def salesBarPlotter(lc):
 
@@ -101,20 +93,18 @@ def salesBarPlotter(lc):
         if lcMapped == None:
             lcMapped = lc
         htmlSales = "<!DOCTYPE html><html><head><title></title> \
-                    </head><body><font face = calibri color = red>No {} data for {} </font></body></html>".format('sales',lcMapped)
+                    </head><body><font face = calibri color = red>No {} data for {} " \
+                    "</font></body></html>".format('sales',lcMapped)
         print("Exception while opening file for Sales")
     lcMapped = ad.area.get(lc)
     if lcMapped == None:
         lcMapped = lc
 
     mainHTML = "<b><p style=font-family:calibri> Coffee Thago:&nbsp;</b>" + lcMapped + "<br><br><b>Analysis:</p></b>"
-    #print("Im htmlsale - > " ,htmlSales)
     if htmlSales!= None:
         mainHTML += htmlSales
-        #print("Im htmlFootfall - > ", htmlFootfall)
     if htmlFootfall!= None:
         mainHTML += htmlFootfall
-    #print("html --- >>>",htmlSales)
     iframe = branca.element.IFrame(html=mainHTML, width=500, height=400)
     mainHTML = None
     popup  = folium.Popup(iframe, max_width=2650)
